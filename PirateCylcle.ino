@@ -10,9 +10,11 @@ void setup()
 {
 
   //  Serial.begin(115200);
-  //  storageModule = new StorageModule(8, 10);
-//  storageModule = new StorageModule(10);
-    smsModule = new SMSModule(2, 3, 4);
+  
+  storageModule = new StorageModule(10);
+  delay(5000);
+  smsModule = new SMSModule(2, 3, 4);
+  delay(5000);
 }
 
 void loop()
@@ -37,11 +39,10 @@ void loop()
       String numberPhone(usernum);
       String userSMS(sms);
       String fileName = numberPhone + ".txt";
-
+      
       if (smsModule->sendSMS(usernum, "Bienvenido a pirate cycle")) {
-        Serial.println("Mensaje enviado");
       }
-
+      //delay(10000);
       //        Serial.println(numberPhone);
       //        Serial.println(userSMS);
       //        Serial.println(fileName);
@@ -101,7 +102,16 @@ void loop()
     //  }else{
     //
     //  }
-  }else{
+  } else {
     Serial.println("Nada..");
+  }
+}
+
+void eventos(int comando) {
+  switch (comando) {
+    case 1: {
+
+        break;
+      }
   }
 }

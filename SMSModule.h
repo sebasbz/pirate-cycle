@@ -23,8 +23,8 @@ class SMSModule {
     SMSModule(int FONA_RX, int FONA_TX, int FONA_RST);
     ~SMSModule();
     bool searching();
-    bool sendSMS(char callerIDbuffer, char sms[141]);
-    bool readSMS();
+    bool sendSMS(char *callerIDbuffer, char sms[141]);
+//    bool readSMS(uint8_t i);
     bool readLastSMS();
     bool getUserNumber(uint8_t i);
     bool getLastUserNumber();

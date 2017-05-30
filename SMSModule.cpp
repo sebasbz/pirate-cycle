@@ -92,7 +92,7 @@ bool SMSModule::getLastUserNumber() {
   }
 
   if (fona->getSMSSender(smsnum, callerIDbuffer, 31)) {
-//    Serial.println(callerIDbuffer);
+    //    Serial.println(callerIDbuffer);
     return true;
   } else {
     Serial.println("Didn't find SMS message in slot!");
@@ -101,14 +101,26 @@ bool SMSModule::getLastUserNumber() {
 }
 
 
-bool SMSModule::sendSMS(char callerIDbuffer, char sms[141]) {
-  if (fona->sendSMS(callerIDbuffer, sms)) {
-    Serial.println(F("Sent!"));
-    return true;
-  } else {
-    Serial.println(F("send message failed "));
-    return false;
+bool SMSModule::sendSMS(char *callerIDbuffer, char sms[141]) {
+
+  while (1) {
+    if (fona->sendSMS(callerIDbuffer, sms)) {
+      break;
+    }
   }
+  return true;
+  
+  //  do{
+  //
+  //  }while(!fona->sendSMS(callerIDbuffer, sms));
+
+  //  if (fona->sendSMS(callerIDbuffer, sms)) {
+  //    Serial.println(F("Sent!"));
+  //    return true;
+  //  } else {
+  //    Serial.println(F("send message failed "));
+  //    return false;
+  //  }
 }
 
 bool SMSModule::readLastSMS() {
@@ -119,7 +131,7 @@ bool SMSModule::readLastSMS() {
   }
   uint16_t smslen;
   if (fona->readSMS(smsnum, replybuffer, 250, &smslen)) {
-//    Serial.println(replybuffer);
+    //    Serial.println(replybuffer);
     return true;
 
   } else {
