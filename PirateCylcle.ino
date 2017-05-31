@@ -41,7 +41,7 @@ void loop()
       String userSMS(sms);
 //      String fileName = numberPhone + ".txt";
 
-      if (smsModule->sendSMS(usernum, "Bienvenido a pirate cycle")) {
+      if (smsModule->sendSMS(usernum, "Proximamente empezaras a recibir mensajes de  la bicicleta pirata... !!!!")) {
         String dato = "#" + numberPhone + "@" + userSMS;
         Serial.println(dato);
         delay(2000);
