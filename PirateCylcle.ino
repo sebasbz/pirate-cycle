@@ -4,21 +4,22 @@
 // numero del modulo 611212746
 // prueba 646491607
 SMSModule *smsModule;
-StorageModule *storageModule;
+//StorageModule *storageModule;
 
 void setup()
 {
 
-  //  Serial.begin(115200);
-  
-  storageModule = new StorageModule(10);
-  delay(5000);
+  Serial.begin(9600);
+
+//  storageModule = new StorageModule(10);
+//  delay(5000);
   smsModule = new SMSModule(2, 3, 4);
-  delay(5000);
+//  delay(5000);
 }
 
 void loop()
 {
+  
   //  if (storageModule->save("pepe.txt", "hola")) {
   //    Serial.println("ok");
   //  }else{
@@ -38,9 +39,14 @@ void loop()
 
       String numberPhone(usernum);
       String userSMS(sms);
-      String fileName = numberPhone + ".txt";
-      
+//      String fileName = numberPhone + ".txt";
+
       if (smsModule->sendSMS(usernum, "Bienvenido a pirate cycle")) {
+        String dato = "#" + numberPhone + "@" + userSMS;
+        Serial.println(dato);
+        delay(2000);
+        smsModule->deleteLastSMS();
+        delay(2000);
       }
       //delay(10000);
       //        Serial.println(numberPhone);
@@ -102,9 +108,7 @@ void loop()
     //  }else{
     //
     //  }
-  } else {
-    Serial.println("Nada..");
-  }
+  } 
 }
 
 void eventos(int comando) {

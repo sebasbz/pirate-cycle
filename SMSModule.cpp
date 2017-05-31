@@ -13,10 +13,15 @@ SMSModule::SMSModule(int FONA_RX, int FONA_TX, int FONA_RST) {
 SMSModule::setupFona() {
   while (!Serial);
 
-  Serial.begin(115200);
+//  Serial.begin(115200);
   Serial.println(F("FONA basic test"));
   Serial.println(F("Initializing....(May take 3 seconds)"));
-
+  // start at 115200 baud
+  fonaSerial->begin(115200);
+  fona->begin(*fonaSerial);
+  
+  // send the command to reset the baud rate to 4800
+  fona->setBaudrate(9600); 
   fonaSerial->begin(4800);
   if (! fona->begin(*fonaSerial)) {
     Serial.println(F("Couldn't find FONA"));
